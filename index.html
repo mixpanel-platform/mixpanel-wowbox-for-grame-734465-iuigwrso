@@ -1,15 +1,248 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Marketing Dashboard</title>
+    <!--mixpanel platform -->
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
-    <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
+    <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script> <!--/mixpanel platform -->
+
+    <!-- Latest compiled and minified JavaScript Bootstrap-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- datables js requirements-->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+
+    <!-- datatables css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+    <!--font awesome icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <!--custom styles-->
+    <link rel="stylesheet" href="style.css">
+
   </head>
+
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
-    <script>
-      // Run queries and display results here
-    </script>
+    <div class="container-fluid" id='pannel-container'>
+      <div class="row">
+          <div class="col-sm-3 col-sm-6">
+              <div class="panel panel-mpblue">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-xs-3">
+                              <i class="fa fa-users fa-4x" aria-hidden="true"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                              <div class="huge" id="dau-header">0</div>
+                              <div class="panel-text">DAU's Today</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="#">
+                      <div class="panel-footer panel-footer-dau">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <div class="col-sm-3 col-sm-6">
+              <div class="panel panel-mpblue">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-xs-3">
+                              <i class="fa fa-line-chart fa-4x" aria-hidden="true"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                              <div class="huge" id="mau-header">0</div>
+                              <div class="panel-text">MAU's This Month</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="#">
+                      <div class="panel-footer panel-footer-mau">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <div class="col-sm-3 col-sm-6">
+              <div class="panel panel-mpblue">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-xs-3">
+                              <i class="fa fa-plus-circle fa-4x"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                              <div class="huge" id="new-users-header">0</div>
+                              <div class="panel-text">New Users Today</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="#">
+                      <div class="panel-footer panel-footer-revenue">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <div class="col-sm-3 col-sm-6">
+              <div class="panel panel-mpblue">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-xs-3">
+                              <i class="fa fa-shopping-cart fa-4x" aria-hidden="true"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                              <div class="huge" id="products-sold">0</div>
+                              <div class="panel-text">Products Sold Today</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="#">
+                      <div class="panel-footer panel-footer-avg-events">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="container-fluid p-t-2" id='tables-and-charts'>
+      <div class='row' id='headers'>
+        <div class="col-sm-6">
+          <h4 class="text-center  text-muted" id="dau-chart-header" style="display: none"><u>Daily Active Users</u></h4>
+        </div>
+        <div class="col-sm-6">
+          <h4 class="text-center text-muted" id="mau-chart-header" style="display: none"><u>Monthly Active Users</u></h4>
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col-sm-6">
+          <div id='dau-chart'></div>
+        </div>
+        <div class="col-sm-6">
+          <div id='mau-chart'></div>
+        </div>
+      </div>
+      <div class="row" id="headers">
+        <div class="col-sm-6">
+          <h4 class="text-center text-muted" id="new-users-graph-header" style="display: none;"><u>New Users by Day</u></h4>
+        </div>
+        <div class="col-sm-6">
+          <h4 class="text-center text-muted" id="new-users-per-month-graph-header" style="display: none;"><u>New Users by Month</u></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div id='new-users-chart'></div>
+        </div>
+        <div class="col-sm-6">
+          <div id='new-users-montly-chart'></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 25px;">
+        <div class="col-sm-6"><!-- start of div for new user table -->
+          <table id='new-users-table' class="table table-striped text-center" cellspacing="0" width="100%">
+            <thead>
+              <tr style="background-color: white;">
+                <th>Day</th>
+                <th>New Users</th>
+              </tr>
+            <thead>
+          </table>
+        </div><!-- /end ofdiv for new user table -->
+        <div class="col-sm-6"><!-- start of div for new user table per month-->
+          <table id='new-users-per-month-table' class="table table-striped text-center" cellspacing="0" width="100%">
+            <thead>
+              <tr style="background-color: white;">
+                <th>Month</th>
+                <th>New Users</th>
+              </tr>
+            <thead>
+          </table>
+        </div><!-- /end ofdiv for new user table per month -->
+      </div>
+      <div class="row" id="headers"> <!--start of header for products sold-->
+        <div class="col-sm-6">
+          <h4 class="text-center text-muted" id="products-per-day-graph-header" style="display: none;"><u>Products Sold by Day</u></h4>
+        </div>
+        <div class="col-sm-6">
+          <h4 class="text-center text-muted" id="products-per-month-graph-header" style="display: none;"><u>Products Sold by Month</u></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div id='products-sold-daily-graph'></div>
+        </div>
+        <div class="col-sm-6">
+          <div id='products-sold-monthly-graph'></div>
+        </div>
+      </div> <!--/ end of header for products sold-->
+      <div class="row" style="margin-top: 25px;">
+        <div class="col-sm-6"><!-- start of div products sold by day table -->
+          <table id='products-day-table' class="table table-striped text-center" cellspacing="0" width="100%">
+            <thead>
+              <tr style="background-color: white;">
+                <th>Day</th>
+                <th>Products Sold</th>
+              </tr>
+            <thead>
+          </table>
+        </div><!-- end of div products sold by day tab-->
+        <div class="col-sm-6"><!-- start of div for products sold per month table-->
+          <table id='products-per-month-table' class="table table-striped text-center" cellspacing="0" width="100%">
+            <thead>
+              <tr style="background-color: white;">
+                <th>Month</th>
+                <th>Products Sold</th>
+              </tr>
+            <thead>
+          </table>
+        </div>
+      </div> <!-- /end start of div for products sold per month table -->
+    </div>
+    <!-- enable linking out to mixpanel reports -->
+    <script type="text/javascript" src="js/linkOuts.js"></script>
+    <!-- helper functions -->
+    <script type="text/javascript" src="js/helperFunctions.js"></script>
+    <!-- new users graphing -->
+    <script type="text/javascript" src="js/newUser.js"></script>
+    <!-- product details graphing -->
+    <script type="text/javascript" src="js/productsSold.js"></script>
+    <!-- dua graphing-->
+    <script type="text/javascript" src="js/dauGraphing.js"></script>
+    <!-- mau graphing -->
+    <script type="text/javascript" src="js/mauGraphing.js"></script>
+
   </body>
 </html>
