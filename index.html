@@ -234,6 +234,27 @@
     <div class="row">
       <div class="col-sm-12 text-center text-muted">This report has been custom-built for WowBox by Mixpanel's client solutions team, and is not warranted or maintained alongside the core Mixpanel product. As the end-user, you are solely responsible for any bug fixes, feature updates, and ongoing code changes or iterations.</div>
     </div>
+    <script type="text/javascript"> // mixpanel tracking
+    //info for tracking
+      var url = window.document.referrer.split('/mpplatform')[0]
+      var id = url.split('report/')[1]
+      var reportLoaded = {
+        'event': 'Report Loaded',
+        'properties': {
+          'token': 'ca9cd5c31c3325af1f911aaaf633ca44',
+          'Report': 'Events by Day or Hour',
+          'distinct_id': id,
+          'Project id': id,
+          'Local Hour': new Date().getHours()
+          'Day of the week': new Date().getDay()
+        }
+      }
+      var stringVersion = JSON.stringify(reportLoaded)
+      var encoded = window.btoa(stringVersion)
+      $.ajax({
+        url: "https://api.mixpanel.com/track/?data="+encoded
+      })
+    </script>
     <!-- enable linking out to mixpanel reports -->
     <script type="text/javascript" src="js/linkOuts.js"></script>
     <!-- helper functions -->
